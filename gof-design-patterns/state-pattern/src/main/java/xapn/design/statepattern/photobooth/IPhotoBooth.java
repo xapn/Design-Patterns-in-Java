@@ -16,6 +16,11 @@ public interface IPhotoBooth {
     void developPhoto();
     
     /**
+     * The photo booth displays a message to the client.
+     */
+    void displayMessage(String message);
+    
+    /**
      * The photo booth gives change.
      */
     void giveChange() throws PhotoBoothException;

@@ -3,6 +3,8 @@
  */
 package xapn.design.statepattern.photobooth;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +17,40 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class PhotoBoothPrintingInProgressState implements IPhotoBoothState {
     
+    private static final Logger LOGGER = LoggerFactory.getLogger(PhotoBoothPrintingInProgressState.class);
+    private static final String WAITING_MESSAGE = "Printing in progress, please wait.";
+    private FavoritePhotoBooth photoBooth;
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void developPhoto() {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        photoBooth.setPhotoPaper(photoBooth.getPhotoPaper() - 1);
+        photoBooth.displayMessage("Photo developed, please retrieve it.");
+        
+        if (photoBooth.getPhotoPaper() > 0) {
+            photoBooth.setState(photoBooth.getEmptyCashState());
+        } else {
+            photoBooth.setState(photoBooth.getOutOfOrderState());
+        }
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void displayMessage(String message) {
+        LOGGER.debug(message);
+    }
+    
+    /**
+     * Getter for the field {@code photoBooth}
+     * 
+     * @return the photoBooth
+     */
+    public FavoritePhotoBooth getPhotoBooth() {
+        return photoBooth;
     }
     
     /**
@@ -29,8 +58,7 @@ public class PhotoBoothPrintingInProgressState implements IPhotoBoothState {
      */
     @Override
     public void giveChange() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException(WAITING_MESSAGE);
     }
     
     /**
@@ -49,6 +77,16 @@ public class PhotoBoothPrintingInProgressState implements IPhotoBoothState {
     public void reloadPhotoPaper(int photopaper) {
         // TODO Auto-generated method stub
         throw new RuntimeException("Not yet implemented"); //
+    }
+    
+    /**
+     * Setter for the field {@code photoBooth}
+     * 
+     * @param photoBooth the photoBooth to set
+     */
+    @Override
+    public void setPhotoBooth(FavoritePhotoBooth photoBooth) {
+        this.photoBooth = photoBooth;
     }
     
     /**

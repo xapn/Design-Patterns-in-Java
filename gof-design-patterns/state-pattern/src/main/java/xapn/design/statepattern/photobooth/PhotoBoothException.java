@@ -11,4 +11,13 @@ package xapn.design.statepattern.photobooth;
 public class PhotoBoothException extends Exception {
     
     private static final long serialVersionUID = 5280690447040268809L;
+    
+    /**
+     * Constructor
+     * 
+     * @param message the message of the exception
+     */
+    public PhotoBoothException(String message) {
+        super(message);
+    }
 }

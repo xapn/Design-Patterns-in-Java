@@ -3,6 +3,10 @@
  */
 package xapn.design.statepattern.photobooth;
 
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Component;
  * <ul>
  * <li>Initialization: At first, the cash is empty.</li>
  * <li>Insert a coin, then the cash becomes full.</li>
+ * <li>Allowed to get the money back until the photo is printed.</li>
  * <li>If one wants to get given change, the coin is given back and the cash
  * becomes empty.</li>
  * <li>Allowed to get the money back until the photo is printed.</li>
@@ -31,6 +36,8 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class FavoritePhotoBooth implements IPhotoBooth {
     
+    private static final Logger LOGGER = LoggerFactory.getLogger(FavoritePhotoBooth.class);
+    
     @Autowired
     private PhotoBoothEmptyCashState emptyCashState;
     @Autowired
@@ -46,8 +53,7 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      * Default constructor.
      */
     public FavoritePhotoBooth() {
-        // TODO Auto-generated constructor stub
-        throw new RuntimeException("Not yet implemented");
+        photoPaper = 0;
     }
     
     /**
@@ -55,8 +61,12 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      */
     @Override
     public void developPhoto() {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        state.developPhoto();
+    }
+    
+    @Override
+    public void displayMessage(String message) {
+        state.displayMessage(message);
     }
     
     /**
@@ -118,8 +128,17 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      */
     @Override
     public void giveChange() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        state.giveChange();
+    }
+    
+    @PostConstruct
+    public void initialize() {
+        LOGGER.debug("Bean {} being initialized.", this);
+        emptyCashState.setPhotoBooth(this);
+        fullCashState.setPhotoBooth(this);
+        outOfOrderState.setPhotoBooth(this);
+        printingInProgressState.setPhotoBooth(this);
+        setState(emptyCashState);
     }
     
     /**
@@ -127,8 +146,7 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      */
     @Override
     public void insertCoin() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        state.insertCoin();
     }
     
     /**
@@ -136,8 +154,7 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      */
     @Override
     public void reloadPhotoPaper(int photoPaper) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        state.reloadPhotoPaper(photoPaper);
     }
     
     /**
@@ -199,7 +216,6 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      */
     @Override
     public void takePhoto() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        state.takePhoto();
     }
 }

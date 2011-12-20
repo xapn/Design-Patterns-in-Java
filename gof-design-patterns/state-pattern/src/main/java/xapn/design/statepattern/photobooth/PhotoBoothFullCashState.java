@@ -3,6 +3,8 @@
  */
 package xapn.design.statepattern.photobooth;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class PhotoBoothFullCashState implements IPhotoBoothState {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(PhotoBoothFullCashState.class);
+    private FavoritePhotoBooth photoBooth;
     
     /**
      * {@inheritDoc}
@@ -28,9 +33,26 @@ public class PhotoBoothFullCashState implements IPhotoBoothState {
      * {@inheritDoc}
      */
     @Override
+    public void displayMessage(String message) {
+        LOGGER.debug(message);
+    }
+    
+    /**
+     * Getter for the field {@code photoBooth}
+     * 
+     * @return the photoBooth
+     */
+    public FavoritePhotoBooth getPhotoBooth() {
+        return photoBooth;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void giveChange() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        photoBooth.setState(photoBooth.getEmptyCashState());
+        photoBooth.displayMessage("Get your money back.");
     }
     
     /**
@@ -38,8 +60,7 @@ public class PhotoBoothFullCashState implements IPhotoBoothState {
      */
     @Override
     public void insertCoin() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException("You have already paid, get your money back.");
     }
     
     /**
@@ -52,11 +73,22 @@ public class PhotoBoothFullCashState implements IPhotoBoothState {
     }
     
     /**
+     * Setter for the field {@code photoBooth}
+     * 
+     * @param photoBooth the photoBooth to set
+     */
+    @Override
+    public void setPhotoBooth(FavoritePhotoBooth photoBooth) {
+        this.photoBooth = photoBooth;
+    }
+    
+    /**
      * {@inheritDoc}
      */
     @Override
     public void takePhoto() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        photoBooth.displayMessage("Photo taken, development in progress.");
+        photoBooth.setState(photoBooth.getPrintingInProgressState());
+        photoBooth.developPhoto();
     }
 }
