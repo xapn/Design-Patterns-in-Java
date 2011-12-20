@@ -253,5 +253,6 @@
 
   <modules>
     <module>logging-dependency</module>
+    <module>gof-design-patterns</module>
   </modules>
 </project>

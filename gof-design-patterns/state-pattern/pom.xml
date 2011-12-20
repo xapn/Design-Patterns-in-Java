@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>xapn.design</groupId>
+    <artifactId>gof-design-patterns</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <groupId>xapn.design</groupId>
+  <artifactId>state-pattern</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>State Pattern</name>
+
+  <dependencies>
+    <!-- Testing Framework -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <!-- Testing Utilities -->
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-easymock</artifactId>
+    </dependency>
+
+    <!-- Spring Framework -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+
+    <!-- Logging -->
+    <dependency>
+      <groupId>xapn.design</groupId>
+      <artifactId>logging-dependency</artifactId>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
+</project>
