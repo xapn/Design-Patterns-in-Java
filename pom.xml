@@ -97,17 +97,28 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-      </plugin>
-    </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>distribution</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <dependencyManagement>
     <dependencies>
@@ -229,9 +240,18 @@
         <artifactId>spring-oxm</artifactId>
         <version>${spring.version}</version>
       </dependency>
+
+      <!-- Built-in dependencies -->
+      <dependency>
+        <groupId>xapn.design</groupId>
+        <artifactId>logging-dependency</artifactId>
+        <version>${project.version}</version>
+        <type>pom</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <modules>
+    <module>logging-dependency</module>
   </modules>
 </project>
