@@ -24,6 +24,10 @@
     </dependency>
     <!-- Testing Utilities -->
     <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.unitils</groupId>
       <artifactId>unitils-inject</artifactId>
     </dependency>
