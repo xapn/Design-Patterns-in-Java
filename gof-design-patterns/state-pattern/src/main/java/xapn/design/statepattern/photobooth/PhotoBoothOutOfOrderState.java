@@ -15,24 +15,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-public class PhotoBoothOutOfOrderState implements IPhotoBoothState {
+public class PhotoBoothOutOfOrderState extends AbstractPhotoBoothState implements IPhotoBoothState {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(PhotoBoothOutOfOrderState.class);
-    private FavoritePhotoBooth photoBooth;
+    private static final String OUT_OF_ORDER = "Out of order: no more photo paper.";
     
     /**
      * {@inheritDoc}
      */
     @Override
-    public void developPhoto() {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void developPhoto() throws PhotoBoothException {
+        throw new PhotoBoothException(OUT_OF_ORDER);
     }
     
     @Override
     public void displayMessage(String message) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        LOGGER.debug(message);
     }
     
     /**
@@ -49,8 +47,7 @@ public class PhotoBoothOutOfOrderState implements IPhotoBoothState {
      */
     @Override
     public void giveChange() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException("No money. Out of order.");
     }
     
     /**
@@ -65,10 +62,8 @@ public class PhotoBoothOutOfOrderState implements IPhotoBoothState {
      * {@inheritDoc}
      */
     @Override
-    public void reloadPhotoPaper(int photopaper) {
-        photoBooth.setPhotoPaper(photoBooth.getPhotoPaper() + photopaper);
-        photoBooth.setState(photoBooth.getEmptyCashState());
-        photoBooth.displayMessage("Photo paper jetset supplied.");
+    public void reloadPhotoPaper(int photoPaper) {
+        super.reloadPhotoPaper(photoPaper);
     }
     
     /**
@@ -86,7 +81,6 @@ public class PhotoBoothOutOfOrderState implements IPhotoBoothState {
      */
     @Override
     public void takePhoto() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException("Out of order.");
     }
 }

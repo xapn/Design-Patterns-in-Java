@@ -15,18 +15,17 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Scope("prototype")
-public class PhotoBoothEmptyCashState implements IPhotoBoothState {
+public class PhotoBoothEmptyCashState extends AbstractPhotoBoothState implements IPhotoBoothState {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(PhotoBoothEmptyCashState.class);
-    private FavoritePhotoBooth photoBooth;
+    private static final String DESCRIPTION = "The cash is empty.";
     
     /**
      * {@inheritDoc}
      */
     @Override
-    public void developPhoto() {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void developPhoto() throws PhotoBoothException {
+        throw new PhotoBoothException(DESCRIPTION);
     }
     
     /**
@@ -51,8 +50,7 @@ public class PhotoBoothEmptyCashState implements IPhotoBoothState {
      */
     @Override
     public void giveChange() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException(DESCRIPTION);
     }
     
     /**
@@ -68,9 +66,8 @@ public class PhotoBoothEmptyCashState implements IPhotoBoothState {
      * {@inheritDoc}
      */
     @Override
-    public void reloadPhotoPaper(int photopaper) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void reloadPhotoPaper(int photoPaper) {
+        super.reloadPhotoPaper(photoPaper);
     }
     
     /**
@@ -88,7 +85,6 @@ public class PhotoBoothEmptyCashState implements IPhotoBoothState {
      */
     @Override
     public void takePhoto() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException(DESCRIPTION);
     }
 }

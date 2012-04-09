@@ -60,7 +60,7 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      * {@inheritDoc}
      */
     @Override
-    public void developPhoto() {
+    public void developPhoto() throws PhotoBoothException {
         state.developPhoto();
     }
     
@@ -153,7 +153,7 @@ public class FavoritePhotoBooth implements IPhotoBooth {
      * {@inheritDoc}
      */
     @Override
-    public void reloadPhotoPaper(int photoPaper) {
+    public void reloadPhotoPaper(int photoPaper) throws PhotoBoothException {
         state.reloadPhotoPaper(photoPaper);
     }
     

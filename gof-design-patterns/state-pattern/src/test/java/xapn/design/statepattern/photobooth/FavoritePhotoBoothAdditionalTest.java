@@ -76,7 +76,7 @@ public class FavoritePhotoBoothAdditionalTest {
      * {@link xapn.projects.statepattern.photobooth.FavoritePhotoBooth#reloadPhotoPaper(int)}
      * .
      */
-    @Test(expected = PhotoBoothException.class)
+    @Test
     public void given_empty_cash_when_reload_photo_paper_then_photo_paper_increased() throws Exception {
         // Setup
         final int initialPhotoPaper = 3;

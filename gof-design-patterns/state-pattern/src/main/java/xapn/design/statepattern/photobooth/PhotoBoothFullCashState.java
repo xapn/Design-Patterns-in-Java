@@ -24,9 +24,8 @@ public class PhotoBoothFullCashState implements IPhotoBoothState {
      * {@inheritDoc}
      */
     @Override
-    public void developPhoto() {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void developPhoto() throws PhotoBoothException {
+        throw new PhotoBoothException("Let's take a photo first, please.");
     }
     
     /**
@@ -67,9 +66,8 @@ public class PhotoBoothFullCashState implements IPhotoBoothState {
      * {@inheritDoc}
      */
     @Override
-    public void reloadPhotoPaper(int photopaper) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void reloadPhotoPaper(int photopaper) throws PhotoBoothException {
+        throw new PhotoBoothException("Give change first, please.");
     }
     
     /**

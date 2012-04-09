@@ -66,17 +66,15 @@ public class PhotoBoothPrintingInProgressState implements IPhotoBoothState {
      */
     @Override
     public void insertCoin() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException(WAITING_MESSAGE);
     }
     
     /**
      * {@inheritDoc}
      */
     @Override
-    public void reloadPhotoPaper(int photopaper) {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+    public void reloadPhotoPaper(int photopaper) throws PhotoBoothException {
+        throw new PhotoBoothException(WAITING_MESSAGE);
     }
     
     /**
@@ -94,7 +92,6 @@ public class PhotoBoothPrintingInProgressState implements IPhotoBoothState {
      */
     @Override
     public void takePhoto() throws PhotoBoothException {
-        // TODO Auto-generated method stub
-        throw new RuntimeException("Not yet implemented"); //
+        throw new PhotoBoothException(WAITING_MESSAGE);
     }
 }
