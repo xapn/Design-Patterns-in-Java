@@ -17,5 +17,6 @@
   
   <modules>
     <module>state-pattern</module>
+    <module>strategy-pattern</module>
   </modules>
 </project>
