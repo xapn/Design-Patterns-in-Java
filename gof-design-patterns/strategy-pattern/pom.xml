@@ -3,17 +3,25 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  
+
   <parent>
     <artifactId>gof-design-patterns</artifactId>
     <groupId>xapn.design</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  
+
   <groupId>xapn.design</groupId>
   <artifactId>strategy-pattern</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Strategy Pattern</name>
   <description>Implementations of the strategy design pattern.</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>xapn.design</groupId>
+      <artifactId>logging-dependency</artifactId>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
 </project>
